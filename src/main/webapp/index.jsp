@@ -21,6 +21,9 @@
 		<div class="layadmin-user-login layadmin-user-display-show"
 			id="LAY-user-login" style="display: none;">
 	
+			<p>${SPRING_SECURITY_LAST_EXCEPTION.message}</p>
+			<form action="${pageContext.request.contextPath }/do/login.html" method="post">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<div class="layadmin-user-login-main">
 				<div class="layadmin-user-login-box layadmin-user-login-header">
 					<h2>layuiAdmin</h2>
@@ -37,14 +40,14 @@
 							
 							<!-- input的name属性值必须符合SpringSecurity规则，除非专门进行了定制，否则用户名必须使用username，密码必须使用password -->
 							<input type="text"
-								name="loginacct" id="LAY-user-login-username" lay-verify="required"
+								name="loginAcct" id="LAY-user-login-username" lay-verify="required"
 								placeholder="用户名" class="layui-input">
 						</div>
 						<div class="layui-form-item">
 							<label
 								class="layadmin-user-login-icon layui-icon layui-icon-password"
 								for="LAY-user-login-password"></label> <input type="text"
-								name="credential" id="LAY-user-login-password" lay-verify="required"
+								name="userPswd" id="LAY-user-login-password" lay-verify="required"
 								placeholder="密码" class="layui-input">
 						</div>
 						<div class="layui-form-item">
@@ -52,7 +55,8 @@
 								<div class="layui-col-xs7">
 									<label
 										class="layadmin-user-login-icon layui-icon layui-icon-vercode"
-										for="LAY-user-login-vercode"></label> <input type="text"
+										for="LAY-user-login-vercode"></label>
+										<input type="text"
 										name="vercode" id="LAY-user-login-vercode" lay-verify="required"
 										placeholder="图形验证码" class="layui-input">
 								</div>
@@ -84,6 +88,7 @@
 						</div>
 				</div>
 			</div>
+			</form>
 	
 			<div class="layui-trans layadmin-user-login-footer">
 				<p>
@@ -100,14 +105,14 @@
 			form.render();
 			
 			//提交
-			form.on('submit(LAY-user-login-submit)', function(obj) {
+			/* form.on('submit(LAY-user-login-submit)', function(obj) {
 				obj.elem.classList.add("layui-btn-disabled");//样式上的禁用效果
 				obj.elem.disabled = true;//真正的禁用效果
 				layer.msg("登陆成功，即将跳转");
 				setTimeout(function(){
 					location.href="main.html";
 				}, 2000);
-			});
+			}); */
 
 		});
 	</script>
